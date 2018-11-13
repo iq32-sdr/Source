@@ -9,6 +9,11 @@ Repository for IQ32 Software
 
 <h2>Release Notes</h2>
 
+Version 1.001
+
+Changed default frequency buttons and sentinel
+Corrected missing bracket in Text_Enter, Tag_SetSelectedText
+
 Version 1.000
 
 Initial Release
