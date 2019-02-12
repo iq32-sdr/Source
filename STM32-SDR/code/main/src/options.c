@@ -341,6 +341,30 @@ void Options_SetSelectedOption(OptionNumber newOption)
 	}
 }
 
+static int16_t s_audioLevel;
+static int16_t s_adjust;
+static _Bool s_muted = 0;
+
+void Options_MuteAudio (void) {
+	s_muted = 1;
+	s_audioLevel = Options_GetValue(OPTION_RX_AUDIO);
+	s_adjust = Options_GetMinimum(OPTION_RX_AUDIO);
+	Options_SetValue(OPTION_RX_AUDIO, s_adjust);
+}
+
+void Options_UnMuteAudio (void) {
+static int ramp = 1;
+
+	if (s_muted == 1 && ramp%20 == 0) { // raise audio level to full over 1s
+		s_adjust++;
+		if (s_adjust == s_audioLevel) {
+			Options_SetValue(OPTION_RX_AUDIO, s_adjust);
+			s_muted = 0;
+		}
+	}
+	ramp++;
+}
+
 // EEPROM Access
 void Options_WriteToEEPROM(void)
 {

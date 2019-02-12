@@ -131,6 +131,7 @@ void TIM7_IRQHandler(void)
 {
 		calculateEncoderChange(&s_encoderStruct1);
 		calculateEncoderChange(&s_encoderStruct2);
+		Options_UnMuteAudio();
 		TIM_ClearITPendingBit(TIM7, TIM_IT_Update );
 }
 

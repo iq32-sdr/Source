@@ -212,12 +212,15 @@ void Set_Band (void){
   if (band != lastBand){
 	  lastBand = band;
 	  if (HR50band == 0){
+		  	yprintf("\n");
 	        yprintf ("HRBN10;");
+		  	yprintf("\n");
 	      }
 	      else{
 	    	  yprintf("HRBN0");
 	    	  yprintf("%d", HR50band);
 	    	  yprintf (";");
+			  yprintf("\n");
 	      }
   clip = cl[band];
   digitalWrite (B80M, LOW);
@@ -232,6 +235,7 @@ void Set_Band (void){
   digitalWrite (B12_10M, HIGH); debug (RS_HFIQ, "Set_Band:B12_10M\n");
   }
 }
+
 
 //------------------------------------------
 

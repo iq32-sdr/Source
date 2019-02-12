@@ -66,6 +66,8 @@ void     Options_SetValue(int optionIdx, int16_t newValue);
 uint16_t Options_GetMinimum(int optionIdx);
 uint16_t Options_GetMaximum(int optionIdx);
 uint16_t Options_GetChangeRate(int optionIdx);
+void Options_MuteAudio (void);
+void Options_UnMuteAudio (void);
 
 // Option selection
 OptionNumber Options_GetSelectedOption(void);

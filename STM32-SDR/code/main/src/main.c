@@ -57,7 +57,7 @@
 #include 	"Si570.h"
 #include	"RS-HFIQ.h"
 
-#define VERSION_STRING "1.001"
+#define VERSION_STRING "1.003"
 
 extern int NCO_Point;
 extern int NCOTuneCount;

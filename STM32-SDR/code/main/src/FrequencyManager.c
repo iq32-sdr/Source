@@ -34,6 +34,7 @@
 #include "Init_I2C.h"
 #include "main.h"
 #include "RS-HFIQ.h"
+#include "options.h"
 //#include "number_images.h"
 
 int NCOTUNE;
@@ -53,23 +54,23 @@ typedef struct
 
 BandsStruct s_bandsData[] = {
 		// Note: Does not initialize the CurrentFrequency; done in initialize function.
-		{ " 80m A",     3525000, 0, USERMODE_CW},
-		{ " 40m A",     7025000, 0, USERMODE_CW},
-		{ " 20m A",    14025000, 0, USERMODE_CW},
-		{ " 15m A",    21025000, 0, USERMODE_CW},
-		{ " 10m A",    28025000, 0, USERMODE_CW},
-		{ " 80m B",     3800000, 0, USERMODE_LSB},
-		{ " 40m B",     7175000, 0, USERMODE_LSB},
-		{ " 20m B",    14225000, 0, USERMODE_USB},
-		{ " 15m B",    21275000, 0, USERMODE_USB},
-		{ " 10m B",    28300000, 0, USERMODE_USB},
-		{ " 60m",       5330500, 0, USERMODE_USB},
-		{ " 30m",      10125000, 0, USERMODE_CW},
-		{ " 17m",      18110000, 0, USERMODE_USB},
-		{ " 12m",      24930000, 0, USERMODE_USB},
-		{ "Trnsvtr LO",       0, 0, USERMODE_USB},
-	    { " SI570 F0", 56320000, 0, USERMODE_USB},
-	    { "Trnsvtr LO",       0, 0, USERMODE_USB},
+		{ " 80m CW",     3560000, 0, USERMODE_CW},
+		{ " 40m CW",     7040000, 0, USERMODE_CW},
+		{ " 20m CW",    14060000, 0, USERMODE_CW},
+		{ " 15m CW",    21060000, 0, USERMODE_CW},
+		{ "10 MHz WWV", 10000000, 0, USERMODE_USB},
+		{ " 80m PSK",    3580000, 0, USERMODE_DIGU},
+		{ " 40m PSK",    7070000, 0, USERMODE_DIGU},
+		{ " 20m PSK",   14070000, 0, USERMODE_DIGU},
+		{ " 15m PSK",   21080000, 0, USERMODE_DIGU},
+		{ "15 MHz WWV", 15000000, 0, USERMODE_USB},
+		{ " 80m SSB",    3985000, 0, USERMODE_LSB},
+		{ " 40m SSB",    7285000, 0, USERMODE_LSB},
+		{ " 20m SSB",   14285000, 0, USERMODE_USB},
+		{ " 10m SSB",   29000000, 0, USERMODE_USB},
+		{ "Trnsvtr LO",        0, 0, USERMODE_USB},
+	    { " SI570 F0",  56320000, 0, USERMODE_USB},
+	    { "Trnsvtr LO",         0, 0, USERMODE_USB},
 
 };
 
@@ -86,7 +87,7 @@ static uint32_t s_stepSize = 1000;
 
 #define EEPROM_FREQBAND_OFFSET 400
 #define EEPROM_SENTINEL_LOC 0
-#define EEPROM_SENTINEL_VAL 1257
+#define EEPROM_SENTINEL_VAL 1256
 
 // Filter bands, See also options.h and options.c Options_GetValue
 #define EEPROM_FILTERBAND_OFFSET 300

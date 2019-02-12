@@ -208,6 +208,7 @@ static void edit_Click(GL_PageControls_TypeDef* pThis)
 		FrequencyManager_SaveCurrentFrequency();
 		Screen_SetScreenMode(FREQUENCY);
 		editMode=FALSE;
+		set_kybd_mode(0);
 		GL_Button_TypeDef* pThat = (GL_Button_TypeDef*) (btnMode->objPTR);
 		pThat->Control_Visible = GL_FALSE; // make the mode button invisible
 		RefreshPageControl (s_pThisScreen, 1);
@@ -246,6 +247,7 @@ void Screen_FreqDone(void) {
 
 	Screen_ChangeButtonFreqLabel(FrequencyManager_GetSelectedBand());
 	editMode=FALSE;
+	set_kybd_mode(0);
 	GL_Button_TypeDef* pThat = (GL_Button_TypeDef*) (btnMode->objPTR);
 	pThat->Control_Visible = GL_FALSE; // make the mode button invisible
 	RefreshPageControl (s_pThisScreen, 1);

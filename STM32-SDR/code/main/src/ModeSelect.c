@@ -26,6 +26,7 @@
 #include "widgets.h"
 #include "STM32-SDR-Subroutines.h"
 #include "options.h"
+#include "FrequencyManager.h"
 
 extern double NCO_Frequency;
 extern int NCOTUNE;
@@ -102,18 +103,19 @@ static ModeStruct s_modeData[] = {
 	},
 };
 
-static ModeStruct* s_pCurrentMode = &s_modeData[USERMODE_USB];
+//static ModeStruct* s_pCurrentMode = &s_modeData[USERMODE_USB];
+static ModeStruct* s_pCurrentMode;
 
 
 void Mode_Init(void)
 {
-	//Mode_SetCurrentMode(USERMODE_USB);
-	// Mode_SetCurrentMode(USERMODE_DIGU);
+	FrequencyManager_SetSelectedBand(FREQBAND_M1);
 }
 
 void Mode_SetCurrentMode(UserModeType newMode)
 {
 	// Change to receive whenever we switch mode
+	Options_MuteAudio();
 	RxTx_SetReceive();
 
 	// Store the change in mode
